@@ -1,28 +1,36 @@
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg !== 'update')
     return;
-  
+
   let mergeInto = $('#partial-discussion-header > ' +
     'div.TableObject.gh-header-meta > ' +
     'div.TableObject-item.TableObject-item--primary > ' +
-    'span:nth-child(2) > ' +
-    'span');
+    'span.commit-ref.css-truncate.user-select-contain.expandable.base-ref');
 
   let mergeFrom = $('#partial-discussion-header > ' +
     'div.TableObject.gh-header-meta > ' +
     'div.TableObject-item.TableObject-item--primary > ' +
-    'span.commit-ref.css-truncate.user-select-contain.expandable.head-ref > ' +
-    'span');
+    'span.commit-ref.css-truncate.user-select-contain.expandable.head-ref');
 
   if (mergeInto.length === 0 || mergeFrom.length === 0)
     return;
 
-  let mergeIntoFrag = mergeInto.parent().attr('title').split(':');
-  let mergeFromFrag = mergeFrom.parent().attr('title').split(':');
+  let mergeIntoText = [];
+  mergeInto.children().each(function () {
+    mergeIntoText.push($(this).text());
+  });
+
+  let mergeFromText = [];
+  mergeFrom.children().each(function () {
+    mergeFromText.push($(this).text());
+  });
+
+  let mergeIntoFrag = mergeInto.attr('title').split(':');
+  let mergeFromFrag = mergeFrom.attr('title').split(':');
 
   let mergeIntoHref = '/' + mergeIntoFrag[0] + '/tree/' + mergeIntoFrag[1];
-  let mergeFromHref = '/' + mergeFromFrag[0] + '/tree/' + mergeFromFrag[1];    
+  let mergeFromHref = '/' + mergeFromFrag[0] + '/tree/' + mergeFromFrag[1];
 
-  mergeInto.html(`<a href="${mergeIntoHref}">${mergeIntoFrag[1]}</a>`);
-  mergeFrom.html(`<a href="${mergeFromHref}">${mergeFromFrag[1]}</a>`);
+  mergeInto.html(`<a href="${mergeIntoHref}">${mergeIntoText.join(':')}</a>`);
+  mergeFrom.html(`<a href="${mergeFromHref}">${mergeFromText.join(':')}</a>`);
 });

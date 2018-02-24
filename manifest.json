@@ -2,16 +2,28 @@
   "manifest_version": 2,
   "name": "GitHub PR Links",
   "version": "0.1",
-  "permissions": ["tabs"],
+  "description": "Adds clickable links to branches that are referred to in GitHub pull requests",
+  "permissions": [
+    "tabs"
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
   "content_scripts": [
     {
       "matches": [
         "https://github.com/*"
       ],
-      "js": ["jquery-3.3.1.min.js", "content.js"]
+      "js": [
+        "jquery-3.3.1.min.js",
+        "content.js"
+      ]
     }
   ]
 }
