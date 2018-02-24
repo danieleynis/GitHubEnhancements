@@ -7,3 +7,6 @@ The purpose of this chrome extension is to add clickable links to branches that 
 ## After
 The branch names are now links which will take you directly to the branch in GitHub
 ![image](https://user-images.githubusercontent.com/11580217/36627685-2e43b652-18fb-11e8-902d-ee06d94fb44e.png)
+
+## Install
+You can find the Chrome extension on the Web Store by searching "GitHub PR Links" or go to the extenstion directly [here](https://chrome.google.com/webstore/detail/github-pr-links/cmgnbinjkbbijffcfebgohmopnffdidg?utm_source=chrome-ntp-icon)
