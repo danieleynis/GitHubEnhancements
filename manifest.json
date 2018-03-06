@@ -1,14 +1,16 @@
 {
   "manifest_version": 2,
-  "name": "GitHub PR Links",
-  "version": "0.1",
-  "description": "Adds clickable links to branches that are referred to in GitHub pull requests",
+  "name": "GitHub Enhancements",
+  "version": "0.2",
+  "description": "GitHub enhancements to make your life easier",
+  "options_page": "options.html",
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "icons": {
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   },
   "background": {
     "scripts": [
@@ -18,7 +20,8 @@
   "content_scripts": [
     {
       "matches": [
-        "https://github.com/*"
+        "https://github.com/*",
+        "http://github.com/*"
       ],
       "js": [
         "jquery-3.3.1.min.js",

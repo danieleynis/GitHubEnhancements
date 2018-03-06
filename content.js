@@ -1,7 +1,20 @@
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg !== 'update')
     return;
+  
+  prefill_pr();
+  update_pr_links();
+});
 
+function prefill_pr() {
+  chrome.storage.sync.get({
+    prefillText: '',
+  }, function (items) {
+    $('#pull_request_body').val(items.prefillText);
+  });
+}
+
+function update_pr_links() {
   let mergeInto = $('#partial-discussion-header > ' +
     'div.TableObject.gh-header-meta > ' +
     'div.TableObject-item.TableObject-item--primary > ' +
@@ -33,4 +46,4 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 
   mergeInto.html(`<a href="${mergeIntoHref}">${mergeIntoText.join(':')}</a>`);
   mergeFrom.html(`<a href="${mergeFromHref}">${mergeFromText.join(':')}</a>`);
-});
+}
